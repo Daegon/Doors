@@ -1,0 +1,252 @@
+local function generateKey()
+   local chars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ1234567890"
+   local key = ""
+   for i = 1, 10 do -- Generates a 10-character key
+      local rand = math.random(1, #chars)
+      key = key .. chars:sub(rand, rand)
+   end
+   return key
+end
+
+
+local function resetKey()
+   local currentKey = generateKey() -- Generate a new key
+   print("Your new generated key:", currentKey) -- Print the new key to the console
+   setclipboard(currentKey) -- Copy the new key to the clipboard
+   return currentKey -- Return the new key
+end
+
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Hoho",
+   LoadingTitle = "We are children of the machine",
+   LoadingSubtitle = "by ssusy#5469",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false,
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Enter key 🤪",
+      Subtitle = "Key System",
+      Note = "Key is copied to your clipboard.",
+      FileName = "SiriusKey",
+      SaveKey = false,
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = resetKey(), -- Use the initial key
+      
+   }
+})
+local function createRFWindow()
+   local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+   local rfwindow = Rayfield:CreateWindow({
+      Name = "Hoho",
+      LoadingTitle = "Rainbow friends script",
+      LoadingSubtitle = "by ssusy#5469",
+      ConfigurationSaving = {
+         Enabled = true,
+         FolderName = nil, -- Create a custom folder for your hub/game
+         FileName = "Big Hub"
+      },
+      Discord = {
+         Enabled = false,
+         Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+         RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+      },
+      KeySystem = false, -- Set this to true to use our key system
+      KeySettings = {
+         Title = "Enter key 🤪",
+         Subtitle = "Key System",
+         Note = "Key is copied to your clipboard.",
+         FileName = "SiriusKey",
+         SaveKey = false,
+         GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+         Key = resetKey(), -- Use the initial key
+      }
+   })
+   local rfesp = rfwindow:CreateTab("Main", 4483362458)
+   local gab = rfesp:CreateButton({
+      Name = "attempt to get all blocks",
+      Callback = function()
+         -- The function that takes place when the button is pressed
+         for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+            if v.ClassName == "Model" then
+               if v:FindFirstChild("TouchTrigger") then
+                  firetouchinterest(v.TouchTrigger, game.Players.LocalPlayer.Character.HumanoidRootPart, 0)
+                  task.wait()
+                  firetouchinterest(v.TouchTrigger, game.Players.LocalPlayer.Character.HumanoidRootPart, 1)
+               end
+            end
+         end
+      end,
+   })
+
+local function highlightObjects()
+   for _, obj in pairs(game.Workspace:GetDescendants()) do
+      if obj:FindFirstChild("TouchTrigger") and not obj:FindFirstAncestor("Doors_Client") then
+         for _, part in pairs(obj:GetDescendants()) do
+            if part:IsA("BasePart") then
+               local highlight = Instance.new("Highlight")
+               highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+               highlight.Name = "Highlight"
+               highlight.Adornee = part
+               highlight.Parent = part
+            end
+         end
+      end
+   end
+end
+
+local function removeHighlights()
+   for _, obj in pairs(game.Workspace:GetDescendants()) do
+      if obj.Name == "Highlight" then
+         obj:Destroy()
+         print('destroyed')
+      end
+   end
+end
+
+local rfpab = rfesp:CreateButton({
+   Name = "Attempt to place all blocks",
+   Callback = function()
+					-- First, get a reference to the local player object
+			local player = game.Players.LocalPlayer
+
+			-- Next, define the coordinates of the destination you want to teleport to
+			local destination = Vector3.new(372.72906494140625, 43.74999237060547, 129.42388916015625)
+
+			-- Finally, call the player's "SetPrimaryPartCFrame" method to move them to the destination
+			player.Character:SetPrimaryPartCFrame(CFrame.new(destination))
+   end,
+})
+
+local espwarning = rfesp:CreateSection("If the esp toggle is not showing all/none, re-toggle it.")
+
+
+local espab = rfesp:CreateToggle({
+   Name = "Esp blocks",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+      if Value then 
+         highlightObjects()
+		 wait(5)
+      else
+         removeHighlights()
+      end
+   end,
+})
+local esphaha = rfesp:CreateSection("im not making a monster esp bc thats too ez for ur sorry asses")
+end
+
+
+local Main = Window:CreateTab("Main", 4483362458) -- Title, Image
+local MainSection = Main:CreateSection("Games Supported: Rainbow Friends, DOORS, and probably more but probably not.")
+local rf = Main:CreateSection("Select which game you are going to use the script.")
+local wrning = Main:CreateSection("ONLY CLICK WHEN YOU ARE IN THE GAME YOU DESIRE TO USE THE SCRIPT")
+local Button = Main:CreateButton({
+   Name = "Rainbow Friends",
+   Callback = function()
+      Rayfield:Destroy()
+      createRFWindow()
+   end
+})
+
+local function DoorWindowFunction()
+	local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+   local DoorsWindow = Rayfield:CreateWindow({
+      Name = "Hoho",
+      LoadingTitle = "DOORS script",
+      LoadingSubtitle = "by ssusy#5469",
+      ConfigurationSaving = {
+         Enabled = true,
+         FolderName = nil, -- Create a custom folder for your hub/game
+         FileName = "Big Hub"
+      },
+      Discord = {
+         Enabled = false,
+         Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+         RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+      },
+      KeySystem = false, -- Set this to true to use our key system
+      KeySettings = {
+         Title = "Enter key 🤪",
+         Subtitle = "Key System",
+         Note = "Key is copied to your clipboard.",
+         FileName = "SiriusKey",
+         SaveKey = false,
+         GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+         Key = resetKey(), -- Use the initial key
+      }
+   })
+    local DoorsTab = DoorsWindow:CreateTab("Main tab", 4483362458)
+	local DoorsEspToggle = DoorsTab:CreateToggle({
+   Name = "Toggle Example",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+        local CurrentRooms = game.Workspace:FindFirstChild("CurrentRooms")
+        
+                        if Value then -- Only add highlights when toggle is on
+                            print('highlight added')
+							if CurrentRooms then
+								while true do
+									local doors = CurrentRooms:GetDescendants()
+									for i, door in pairs(doors) do
+										if door.Name == "Door" and door:IsA("MeshPart") then
+											local OldDoor = door:FindFirstChild("OldDoor")
+											if not OldDoor then
+												local highlight = Instance.new("Highlight")
+												highlight.Adornee = door
+												highlight.Parent = door
+
+
+												local Open = door:FindFirstChild("Open")
+                            if Open and Open:IsA("Sound") then
+                                Open.Played:Connect(function()
+                                    highlight:Destroy()
+                                    print('highlight removed')
+
+                                    local OldDoorModel = Instance.new("Model", door)
+                                    OldDoorModel.Name = "OldDoor"
+								wait(1)
+
+							end)
+                            end
+                        end
+                    end
+                end
+
+                
+            end
+        end
+                            else -- Remove highlights when toggle is off
+                                highlight:Destroy()
+                                print('highlight removed')
+                            end
+
+                                
+
+        -- The function that takes place when the toggle is pressed 
+        -- The variable (Value) is a boolean on whether the toggle is true or false 
+    end,
+})
+end
+local DoorsButton = Main:CreateButton({
+	Name = "Doors",
+	Callback = function()
+	Rayfield:Destroy()
+	DoorWindowFunction()
+	print('asdasihdasoidsad')
+	end
+})
+
+
